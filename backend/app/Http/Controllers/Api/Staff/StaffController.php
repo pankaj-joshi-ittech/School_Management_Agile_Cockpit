@@ -4,20 +4,20 @@ namespace App\Http\Controllers\Api\Staff;
 use App\Staff;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repository\StaffRepository;
+use App\Repository\UserRepository;
 
 class StaffController extends Controller
 {
-    public function __construct(Request $request ,StaffRepository $staffRepository){
+    public function __construct(Request $request ,UserRepository $userRepository){
 
         $this->request = $request;
 
-        $this->staffRepository = $staffRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function getStaffDetails(){
         try{
-            $getStaff = $this->staffRepository->getData([],'get',[],1);
+            $getStaff = $this->userRepository->getData(['role_id'=>'2'],'get',[],1);
 
             if(isset($getStaff)){
                 return response()->json([
